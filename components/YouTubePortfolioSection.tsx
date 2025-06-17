@@ -9,19 +9,19 @@ import Image from 'next/image'; // next/image import
 const portfolios = [
   { title: '경제 토크 콘텐츠', 
     description: '두 전문가가 하나의 경제 이슈를 유쾌하고 날카롭게 풀어내는 토크 콘텐츠입니다.', 
-    thumbnail: '/Images/policy.png',                             // 썸네일 이미지 경로
+    thumbnail: '/images/policy.png',                             // 썸네일 이미지 경로
     youtubeLink: 'https://youtu.be/9h5hoRjHkSA',  // 유튜브 링크 추가
   },
 
   { title: '명사 초대 영상', 
     description: '다양한 분야의 명사들을 초청해 더욱 깊이있는 인사이트를 제공합니다.', 
-    thumbnail: '/Images/chart.png',                              // 썸네일 이미지 경로
+    thumbnail: '/images/chart.png',                              // 썸네일 이미지 경로
     youtubeLink: 'https://youtu.be/NEsBGIPowmc?si=VmLDSV1efV5MBkgm',  // 유튜브 링크 추가  
   },
 
   { title: '시사·경제 해설', 
     description: '사회 현상과 경제를 연결해 흐름을 짚어주는, 통찰력 있는 시사형 해설 콘텐츠입니다.', 
-    thumbnail: '/Images/breaking.png',                           // 썸네일 이미지 경로
+    thumbnail: '/images/breaking.png',                           // 썸네일 이미지 경로
     youtubeLink: 'https://youtu.be/LIMRM4x600Q?si=vxhoWr-gRmLrl4RY',  // 유튜브 링크 추가
   },
 ];
