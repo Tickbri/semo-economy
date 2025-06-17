@@ -67,7 +67,7 @@ const HeroSection = ({ id }: { id: string }) => { // 기존 방식 유지
 
       {/* 아래로 스크롤 유도 아이콘 (선택적) */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer" // bottom 위치 조정
+        className="absolute bottom-8 w-full flex justify-center cursor-pointer" // bottom 위치 조정
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
