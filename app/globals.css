@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 파일 상단 기존 :root 정의 (Next.js 기본값) */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@layer base {
+  :root { /* 라이트 모드 */
+    --background: 255, 255, 255; /* white */
+    --foreground: 17, 24, 39; /* gray-900 */
+    --primary: 37, 99, 235; /* blue-600 */
+    --primary-foreground: 255, 255, 255; /* white */
+    --secondary: 107, 114, 128; /* gray-500 */
+    --accent: 234, 179, 8; /* yellow-500 */
+    --card-bg: 249, 250, 251; /* gray-50 */
+    /* 라이트 모드 패턴 색상 (예: 배경보다 어두운 회색) */
+    --pattern-fill-light: '%23E5E7EB'; /* gray-200 */
+  }
+
+  .dark { /* 다크 모드 */
+    --background: 17, 24, 39; /* gray-900 (#111827) */
+    --foreground: 229, 231, 235; /* gray-200 */
+    --primary: 96, 165, 250; /* blue-400 */
+    --primary-foreground: 17, 24, 39; /* gray-900 */
+    --secondary: 156, 163, 175; /* gray-400 */
+    --accent: 250, 204, 21; /* yellow-400 */
+    --card-bg: 255, 255, 255; /* gray-800 (#1F2937) */
+    /* 다크 모드 패턴 색상 - "무늬"를 진하게 보이도록 배경보다 밝은 색 선택 */
+    /* 예시: gray-700 (#374151) 또는 gray-600 (#4B5563) */
+    --pattern-fill-dark: '%23374151'; /* gray-700 - 이 값을 조정하여 진하기 변경 */
+    /* 만약 #0E121F를 꼭 사용해야 한다면: --pattern-fill-dark: '%230E121F'; */
+  --section-very-dark-bg: 14, 18, 31; /* #0E121F (요청하신 매우 어두운 배경/패턴 색상) */
+  --foreground: 229, 231, 235;      /* gray-200 (기본 밝은 텍스트) */
+  --secondary: 156, 163, 175;     /* gray-400 (보조 밝은 텍스트) */
+  --primary: 96, 165, 250;         /* blue-400 (포인트 색상, 카드 제목 등에 사용) */
+  --border-color: 55, 65, 81;      /* gray-700 (테두리 색) */
+  }
+
+  html { @apply scroll-smooth; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Pretendard', sans-serif;
+  }
+  section { @apply py-16 md:py-20 lg:py-24; }
+  
+  h1 { @apply text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground; } /* text-foreground로 변경 */
+  h2 { @apply text-3xl sm:text-4xl font-bold tracking-tight text-foreground; } /* text-foreground로 변경, 이전 h2 text-primary 중복 제거 */
+  h3 { @apply text-2xl sm:text-3xl font-semibold text-foreground; } /* text-foreground로 변경 */
+  p { @apply text-base text-secondary leading-relaxed; } /* var(--secondary) 사용 */
+
+  .active-nav-link { @apply text-primary font-semibold; } /* var(--primary) 사용 */
+  /* .dark .active-nav-link 중복 스타일 제거 (위에서 CSS 변수로 처리됨) */
+
+
+}
+
+@layer components {
+  .btn { /* 기본 버튼 패딩 및 정렬 등을 위한 공통 클래스 (선택적) */
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-md shadow-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn border-transparent; /* .btn 클래스 상속 */
+    /* CSS 변수를 사용하여 테마에 맞는 색상 적용 */
+    color: rgb(var(--primary-foreground));
+    background-color: rgb(var(--primary));
+  }
+  .btn-primary:hover {
+    background-color: rgba(var(--primary), 0.9); /* 약간 어둡거나 밝게 */
+  }
+  .dark .btn-primary:hover { /* 다크모드에서는 primary 색상이 밝으므로, 호버 시 약간 더 밝게 하거나 미세 조정 */
+     filter: brightness(1.1);
+  }
+  .btn-primary:focus-visible {
+    ring-color: rgb(var(--primary));
+  }
+
+
+  .btn-secondary {
+    @apply btn border; /* .btn 클래스 상속 */
+    /* CSS 변수를 사용하여 테마에 맞는 색상 적용 */
+    background-color: transparent;
+    color: rgb(var(--primary));
+    border-color: rgb(var(--primary));
+  }
+  .btn-secondary:hover {
+    background-color: rgba(var(--primary), 0.1); /* 호버 시 은은한 배경 */
+  }
+  .btn-secondary:focus-visible {
+    ring-color: rgb(var(--primary));
+  }
+  
+  .back-to-top-button {
+    @apply fixed bottom-8 right-8 p-3 rounded-full bg-primary text-primary-foreground shadow-lg hover:opacity-80 transition-opacity duration-300 z-50;
+  }
+
+  .faq-item summary {
+    @apply flex justify-between items-center py-4 px-2 cursor-pointer font-semibold rounded-md;
+    color: rgb(var(--foreground));
+  }
+  .faq-item summary:hover { /* 테마에 맞게 호버 색상 조정 */
+    background-color: rgba(var(--primary), 0.05); 
+  }
+  .dark .faq-item summary:hover {
+    background-color: rgba(var(--primary), 0.1);
+  }
+  .faq-item summary::-webkit-details-marker { @apply hidden; }
+  .faq-item summary::marker { @apply content-none; }
+  .faq-item div { /* content */
+    @apply px-2 pb-4 text-secondary;
+  }
+}
+
+/* Custom CSS - CSS 변수를 사용하도록 대부분 수정 */
+/* body { font-family: 'Pretendard', sans-serif; } /* @layer base로 이동 */
+
+.hero-section {
+  position: relative;
+  padding: 96px 0;
+  background: linear-gradient(to right, rgb(var(--hero-gradient-start, 0,123,255)), rgb(var(--hero-gradient-end, 102,16,242))); /* fallback 추가 */
+  color: rgb(var(--primary-foreground)); /* Hero는 보통 어두운 배경에 밝은 글씨 */
+  overflow: hidden;
+}
+.dark .hero-section { /* 다크모드에서는 primary-foreground가 어두울 수 있으므로 foreground로 대체 */
+   color: rgb(var(--foreground));
+}
+
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(var(--hero-overlay, 0,0,0), 0.2); /* fallback 추가 */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.about-us-section,
+.youtube-portfolio-section,
+.contact-section {
+  padding: 96px 0;
+}
+
+.mission-section,
+.achievements-section {
+  padding: 96px 0;
+  background-color: rgb(var(--background));
+}
+
+.youtube-grid { /* 이하 동일하게 유지 */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.youtube-video {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 테마에 맞게 조정 필요: rgba(var(--foreground-rgb-values), 0.1) */
+  transition: transform 0.3s ease;
+  background-color: rgb(var(--background)); /* 카드 내부 배경은 body 배경과 다를 수 있음 */
+}
+.dark .youtube-video {
+  box-shadow: 0 4px 12px rgba(var(--hero-overlay,0,0,0), 0.1); /* fallback 추가 */
+}
+
+
+.youtube-video:hover {
+  transform: translateY(-8px);
+}
+
+.youtube-video img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.youtube-video .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--hero-overlay,0,0,0), 0.6); /* fallback 추가 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.youtube-video:hover .overlay {
+  opacity: 1;
+}
+
+.youtube-video .overlay p {
+  color: white; /* 또는 var(--primary-foreground) */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+}
+
+.achievement-item {
+  text-align: center;
+}
+
+.achievement-item .value {
+  font-size: 48px;
+  font-weight: bold;
+  color: rgb(var(--primary));
+}
+
+.achievement-item .label {
+  font-size: 20px;
+  color: rgb(var(--secondary));
+}
+
+.contact-section iframe {
+  border: none;
+  height: 800px;
+}
+
+@media (max-width: 768px) {
+  .hero-section,
+  .about-us-section,
+  .mission-section,
+  .youtube-portfolio-section,
+  .achievements-section,
+  .contact-section {
+    padding: 64px 0;
+  }
+
+  .youtube-grid, .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+}

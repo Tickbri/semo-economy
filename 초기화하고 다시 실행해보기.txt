@@ -1,0 +1,9 @@
+dist 폴더
+node_modules 폴더 
+package-lock.json
+
+위 파일들 삭제하고
+
+
+npm install
+npm run dev 실행해보기

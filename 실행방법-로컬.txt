@@ -1,0 +1,14 @@
+#semo-economy 탐색기 창 - 주소클릭(예:내 PC>F:>....) - cmd 치기
+
+
+# 로컬에서 실행시켜보기
+
+
+#설치
+npm install
+npm audit fix
+
+
+
+#실행
+npm run dev
